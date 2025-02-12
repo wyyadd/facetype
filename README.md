@@ -4,7 +4,8 @@
 
 ### `GET /face-type`
 
-Retrieves a unique identifier (`face_type`) for a given face image.
+Retrieves a unique identifier (`face_type`) for a given face image.  
+Docker hub: https://hub.docker.com/r/wyyadd/face-type
 
 ## Request Parameters
 
