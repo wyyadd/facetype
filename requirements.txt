@@ -3,3 +3,4 @@ numpy
 requests
 fastapi[standard]
 opencv-python
+tf-keras
