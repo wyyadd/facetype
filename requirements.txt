@@ -4,3 +4,8 @@ requests
 fastapi[standard]
 opencv-python
 tf-keras
+pandas
+torch
+scikit-learn
+gradio
+tqdm
