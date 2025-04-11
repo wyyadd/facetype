@@ -5,11 +5,12 @@ import torch
 from deepface import DeepFace
 from fastapi import FastAPI, HTTPException
 
-from model import MultiLabelClassifier
+from model import MultiLabelClassifier, ensure_model_downloaded
 
 app = FastAPI()
 
-model_path = "classifier.pth"
+model_path = "data/classifier.pth"
+ensure_model_downloaded(model_path)
 model = MultiLabelClassifier(embedding_dim=4096, hidden_dim=1024)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.load_state_dict(torch.load(model_path, weights_only=True))

@@ -1,10 +1,12 @@
 import logging
+import os
 import pickle
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
 import pandas
 import pandas as pd
+import requests
 import torch
 from deepface import DeepFace
 from sklearn.metrics import accuracy_score, recall_score, f1_score
@@ -33,6 +35,19 @@ def load_df(target_labels: list[str]):
     test_df = df[df['partition'] == 2]
 
     return train_df, test_df
+
+
+def ensure_model_downloaded(model_path: str):
+    os.makedirs(os.path.dirname(model_path), exist_ok=True)
+    if not os.path.exists(model_path):
+        logging.warning("Model not found. Downloading from GitHub...")
+        response = requests.get("https://github.com/wyyadd/facetype/releases/download/1.0.0/classifier.pth")
+        if response.status_code != 200:
+            logging.error("Failed to download classifier.pth")
+            raise RuntimeError("Failed to download model.")
+        with open(model_path, "wb") as f:
+            f.write(response.content)
+        logging.info("Download complete.")
 
 
 class EmbeddingDataset(Dataset):
