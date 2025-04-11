@@ -9,7 +9,7 @@ from model import MultiLabelClassifier
 
 app = FastAPI()
 
-model_path = "data/classifier.pth"
+model_path = "classifier.pth"
 model = MultiLabelClassifier(embedding_dim=4096, hidden_dim=1024)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.load_state_dict(torch.load(model_path, weights_only=True))
