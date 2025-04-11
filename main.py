@@ -13,7 +13,7 @@ model_path = "data/classifier.pth"
 ensure_model_downloaded(model_path)
 model = MultiLabelClassifier(embedding_dim=4096, hidden_dim=1024)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.load_state_dict(torch.load(model_path, weights_only=True))
+model.load_state_dict(torch.load(model_path, weights_only=True, map_location=device))
 model.to(device).eval()
 
 
