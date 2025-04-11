@@ -29,7 +29,7 @@ Docker hub: https://hub.docker.com/r/wyyadd/face-type
 
 ### Success Response
 **Status Code:** `200 OK`  
-**Note**: face type is from 0 to 31.
+**Note**: face type is from 0 to 63.
 
 ```json
 {
